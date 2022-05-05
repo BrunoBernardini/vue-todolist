@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Todo List</title>
+</head>
+<body>
+  
+  <div id="app" class="container">
+    <h1 class="titolo">ToDo list</h1>
+    <div class="new-todo">
+      <input
+        v-model.trim="newTodo"
+        @keyUp.enter="addTodo" 
+        type="text"
+        placeholder="Nuovo todo">
+      <button
+        @click="addTodo">Aggiungi</button>
+    </div>
+
+    <div class="todo-container">
+      <ul v-if="todos.length > 0">
+        <li v-for="(todo, index) in todos">
+          <div 
+            @click="todo.done = !todo.done"
+            class="text"
+            :class="{'done':todo.done}">{{todo.text}}</div>
+          <i
+            @click="removeTodo(index)"
+            class="fa-solid fa-circle-xmark"></i>
+        </li>
+      </ul>
+      <h2 v-else>Non c'è nessun ToDo</h2>
+    </div>
+  </div>
+
+  <script src="./assets/JS/script.js"></script>
+</body>
+</html>
